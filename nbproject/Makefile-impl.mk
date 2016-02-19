@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=ParkingSensor.X
+PROJECTNAME=ParkingSensor
 
 # Active Configuration
 DEFAULTCONF=default
