@@ -8,8 +8,17 @@
 #include "PIC16F1825_config.h"
 #include "PIC16F1825_utils.h"
 
-#define SOUND_TIME 0.25
-int PERIOD = 500 // in milliseconds
+#define DUTY_CYCLE 0.5
+
+void interrupt ISR() {
+    if (PIR1bits.TMR2IF) {
+        PORTCbits.RC0 = !PORTCbits.RC0;
+        PIR1bits.TMR2IF = 0;
+    }
+    
+    PIE1bits.TMR2IE = 1;
+    return;
+}
 
 void main(void) {
     
@@ -19,12 +28,11 @@ void main(void) {
     // Sets PORT C as output
     TRISC = 0x00;
     
-    while(TRUE) {
-        PORTCbits.RC0 = 1;
-        __delay_ms(period*SOUND_TIME);
-        PORTCbits.RC0 = 0;
-
-    }
+    // Configures the TIMER2
+    enableInterrupts();
+    configTimer2();
     
-    return;
+    PORTCbits.RC0 = 1;
+    
+    while(TRUE);
 }

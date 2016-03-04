@@ -21,5 +21,5 @@
 #pragma config LVP = ON         /* Low-Voltage Programming Enable (Low-voltage programming enabled) */
 
 /* The following macro is necessary for the xc8 compiler delay macros correct functioning */
-#define _XTAL_FREQ 16000000
+#define _XTAL_FREQ 1000000
 
