@@ -25,9 +25,8 @@ void configTimer2(void) {
     
     // Enables the timer
     T2CONbits.TMR2ON = 1;
-}
-
-void enableInterrupts(void) {
-    INTCONbits.GIE  = 1;
+    
+    // Enables peripheral interrupts and global interrupts
     INTCONbits.PEIE = 1;
+    INTCONbits.GIE  = 1;
 }

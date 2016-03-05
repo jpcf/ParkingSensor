@@ -11,13 +11,10 @@
 #define DUTY_CYCLE 0.5
 
 void interrupt ISR() {
-    if (PIR1bits.TMR2IF) {
-        PORTCbits.RC0 = !PORTCbits.RC0;
+    if (PIR1bits.TMR2IF == 1) {
+        LATCbits.LATC0 = ~LATCbits.LATC0;
         PIR1bits.TMR2IF = 0;
     }
-    
-    PIE1bits.TMR2IE = 1;
-    return;
 }
 
 void main(void) {
@@ -29,10 +26,9 @@ void main(void) {
     TRISC = 0x00;
     
     // Configures the TIMER2
-    enableInterrupts();
     configTimer2();
     
-    PORTCbits.RC0 = 1;
+    LATCbits.LATC0 = 0;
     
     while(TRUE);
 }
