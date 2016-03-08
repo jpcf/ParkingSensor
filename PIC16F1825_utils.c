@@ -18,7 +18,7 @@ void configTimer2(void) {
     T2CONbits.T2CKPS = 0b11;
     
     // Configures the Compare register PR2
-    PR2 = 121;
+    PR2 = 0xFF;
     
     // Enables the associated interrupt
     PIE1bits.TMR2IE = 1;
